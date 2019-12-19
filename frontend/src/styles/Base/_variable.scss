@@ -1,0 +1,8 @@
+$colorPrimario :hsla(10,100%, 60%, 1);
+$colorSecundario: hsla(30,100%, 60%, 1);
+$colorTerciario: hsla(220, 70%, 50%, 1);
+$colorLetra:hsl(0,0,90%);
+$tamañoLetra:16px;
+$tamañoChico:$tamañoLetra/(1.618);
+$tamañoGrande:$tamañoLetra*(1.618);
+$tamañoMuyGrande:$tamañoGrande*(1.618);

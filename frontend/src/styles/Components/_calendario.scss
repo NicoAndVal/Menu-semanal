@@ -1,0 +1,42 @@
+@import '../Base/variable';
+
+// .comidas{
+//     grid-row: span 7;
+//     display: grid;
+// }
+
+
+// .calendario-comidas{
+//     border: 1px solid red;
+//     display: flex;
+//     justify-content: center;
+// }
+
+.calendario-comidas{
+    display: grid;
+    grid-row: span 7;
+    background: $colorPrimario;
+
+    &:nth-child(even){
+        background: $colorSecundario;
+    }
+
+    &_plato{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 2em;
+        border: 1px solid white;
+        font-style: italic;
+
+    }
+
+    &_imagen{
+        width: 80%;
+        height: 80%;
+        border-radius: 10px;
+        margin:10px 0 10px 30px
+    }
+
+}

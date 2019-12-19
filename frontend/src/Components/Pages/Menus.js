@@ -1,0 +1,11 @@
+import React from 'react'
+
+class Menus extends React.Component{
+    render(){
+        return(
+            <h1>Menus</h1>
+        )
+    }
+}
+
+export default Menus

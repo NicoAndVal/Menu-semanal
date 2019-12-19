@@ -1,0 +1,126 @@
+@import './Components/calendario';
+@import './Components/recordatorio';
+@import './Base/variable';
+
+
+//Menu principal
+.main-menu{
+    &_links{
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+        // background: $colorPrimario;
+        list-style: none;
+    }
+
+    &_content{
+        padding: 10px;
+        // color: white;
+        text-decoration: none;
+    }
+
+    &_content:hover{
+        // background: hsla(30,100%, 60%, 0.7);
+    }
+}
+
+
+//formulario para agregar comidas
+.formulario-comidas{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    &_input{
+        width: 30%;
+        align-content: center;
+        padding: 1em;
+        margin-bottom: 10px;
+        
+    }
+
+    &_titulo{
+        text-align: center;
+        margin-bottom: 20px;
+
+    }
+
+    &_button{
+        padding: 1em;
+        background: $colorSecundario;
+        color: white;
+        font-size: 1em;
+    }
+
+    &_button:hover{
+        background: $colorPrimario;
+    }
+}
+
+//Calendario - Planificador
+
+.calendario{
+    display: grid;
+    grid-template-columns: 200px repeat(3,1fr);
+    grid-template-rows:  50px repeat(7,1fr);
+    border: 1px solid black; 
+
+    &_dias{
+        background: $colorPrimario;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid white;
+    }
+
+    &_instancia{
+        background: $colorPrimario;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid white;
+
+        &:nth-child(even){
+            background: $colorSecundario;
+        }
+
+    }
+    
+    .lunes{
+        grid-row: 2/3;
+    }
+
+    .martes{
+        grid-row: 3/4;
+    }
+    .miercoles{
+        grid-row: 4/5;
+    }
+    .jueves{
+        grid-row:5/6
+    }
+    .viernes{
+        grid-row: 6/7;
+    }
+    .sabado{
+        grid-row: 7/8;
+    }
+    .domingo{
+        grid-row: 8/9;
+    }
+
+}
+
+.title{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    &_imagen{
+        width: 250px;
+        height: 200px;
+    }
+
+}
