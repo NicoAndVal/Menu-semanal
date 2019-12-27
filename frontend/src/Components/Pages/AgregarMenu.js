@@ -1,24 +1,25 @@
 import React from 'react'
 
 
-class AgregarMenu extends React.Component{
-    
-    constructor(props){
+class AgregarMenu extends React.Component {
+
+    constructor(props) {
         super(props)
         this.enviarMenu = this.enviarMenu.bind(this)
     }
 
-    enviarMenu(e){
-        e.preventDefault()
+    enviarMenu(e) {
+        
         console.log(new FormData(e.target))
         fetch("http://localhost:5000/api/plato",{
             method: 'POST',
             body: new FormData(e.target)
         })
-
+        
+        e.preventDefault()
         // e.target.nombre.value =''
         // e.target.instancia.value=''
-        // e.targe.elaboracion.value=''
+        // e.target.elaboracion.value=''
         // e.target.porciones.value = ''
         // e.target.imagen.value = ''
         // e.target.time.value = ''
@@ -26,41 +27,72 @@ class AgregarMenu extends React.Component{
 
 
 
-    render(){
-        return(
-            <form className='formulario-comidas' onSubmit={this.enviarMenu} encType="multipart/form-data" >
-                <h1 className='formulario-comidas_titulo'>Agrega tu comida</h1>
+    render() {
+        return (
+            <div className='container'>
+
+                <h1 className='title_agrega_menu'> AGREGA TU MENÚ </h1>
+
+                <form onSubmit = {this.enviarMenu} encType="multipart/form-data">
+                    <div className="form-group">
+                        <label htmlFor="exampleInputEmail1">Nombre del Menú</label>
+                        <input type="text" className="form-control"  name='nombre'/>
+                        {/* <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small> */}
+                    </div>
+                    <div className="form-group">
+                        <label>Elaboración del plato</label>
+                        <textarea  name='elaboracion'  className="form-control" rows="3"></textarea>
+                    </div>
+                        <div className="row">
+                            <div className="col">
+                                <div className="form-group">
+                                    <label >Porciones</label>
+                                    <select className="form-control" name='porciones'>
+                                        <option value='1 persona'>1 Persona</option>
+                                        <option value='2 persona'>2 Persona</option>
+                                        <option value='3 persona'>3 Persona</option>
+                                        <option value='4 persona'>4 Persona</option>
+                                        <option value='5 persona'>5 Persona</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="col">
+                                <div className="form-group">
+                                    <label >Tiempo de elaboración</label>
+                                    <select className="form-control" name='time'>
+                                        <option value='15 minutos'>15 Minutos</option>
+                                        <option value='30 minutos'>30 Minutos</option>
+                                        <option value='45 minutos'>45 Minutos</option>
+                                        <option value='60 minutos'>60 Minutos</option>
+                                        <option value='2 horas'>2 Horas</option>
+                                    </select>
+                                </div>
+                        </div>
+                        <div className="col">
+                            <div className="form-group">
+                                <label >instancia</label>
+                                <select className="form-control" name='instancia'>
+                                    <option value='Desayuno'>Desayuno</option>
+                                    <option value='Almuerzo'>Almuerzo</option>
+                                    <option value='Cena'>Cena</option>
+                                </select>
+                                </div>
+
+                            </div>
+                        </div>       
+                    <div className="form-group">
+                        <label >Imagen del menu</label>
+                        <input name='imagen' type="file" className="form-control-file"/>
+                    </div>
+                    <button type="submit" className="btn btn-primary">AGREGAR RECETA</button>
+                </form>
+
                 
-                    <input className='formulario-comidas_input' type='text' name='nombre' placeholder='Nombre Receta'/>
-        
-                  <textarea className='formulario-comidas_input' name='elaboracion' rows='5' cols='70' placeholder='Elaboracion'></textarea>
-                
-                <select className='formulario-comidas_input' name='porciones'>
-                    <option value='1 persona'>1 Persona</option>
-                    <option value='2 personas'>2 Personas</option>
-                    <option value='3 personas'>3 Personas</option>
-                    <option value='4 personas'>4 Personas</option>
-                    <option value='5 personas'>5 Personas</option>
-                </select>
 
-                <select className='formulario-comidas_input' name='time'>
-                    <option value='15 minutos'>15 MINUTOS</option>
-                    <option value='30 minutos'>30 MINUTOS</option>
-                    <option value='45 minutos'>45 MINUTOS</option>
-                    <option value='60 minutos'>60 MINUTOS</option>
-                  
-                </select>
+            </div>
 
-                <select className='formulario-comidas_input' name='instancia'>
-                    <option value='Desayuno'>Desayuno</option>
-                    <option value='Almuerzo'>Almuerzo</option>
-                    <option value='Cena'>Cena</option>
-                  
-                </select>
-                    <input type='file' name='imagen' placeholder='Nombre Receta' className='formulario-comidas_input'/>
-                <button className='formulario-comidas_button'>Agregar Receta</button>
 
-            </form>
+
         )
     }
 }

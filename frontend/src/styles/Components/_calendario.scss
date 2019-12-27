@@ -1,16 +1,10 @@
 @import '../Base/variable';
 
-// .comidas{
-//     grid-row: span 7;
-//     display: grid;
-// }
+.calendario{
 
-
-// .calendario-comidas{
-//     border: 1px solid red;
-//     display: flex;
-//     justify-content: center;
-// }
+    
+    
+}
 
 .calendario-comidas{
     display: grid;
@@ -33,8 +27,8 @@
     }
 
     &_imagen{
-        width: 80%;
-        height: 80%;
+        width: 200px;
+        height: 150px;
         border-radius: 10px;
         margin:10px 0 10px 30px
     }

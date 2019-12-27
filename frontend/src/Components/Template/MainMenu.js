@@ -1,17 +1,30 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
+import CartCounter from '../Atomic/CartCounter'
 
 
 const MainMenu = () => (
     <>
-        <div className = 'main-menu'>
-            <ul className='main-menu_links'>
-                <li className = 'main-menu_item'><NavLink exact to='/' className='main-menu_content' activeClassName='activo'>Home</NavLink></li>
-                <li className = 'main-menu_item'><NavLink to='/agregarmenu'  className='main-menu_content' activeClassName='activo'>Agregar Menu</NavLink></li>
-                <li className = 'main-menu_item'><NavLink to='/mostrarmenu'  className='main-menu_content' activeClassName='activo'>Menus</NavLink></li>
-            </ul>
+        <ul className="nav  nav-pills justify-content-center">
+            <li className="nav-item">
+                <NavLink exact to='/' className='nav-link'>Home</NavLink>
+            </li>
+            <li className="nav-item">
+                <NavLink to='/agregarmenu' className='nav-link'>Agregar Menu</NavLink>
+            </li>
+            <li className="nav-item">
+                <NavLink to='/mostrarmenu' className='nav-link'>Menus</NavLink>
 
-        </div>
+            </li>
+            <li className="nav-item">
+                <NavLink to='/formulario' className='nav-link'>Formulario</NavLink>
+
+            </li>
+
+            <li className='nav-link'> <CartCounter/></li>
+
+
+        </ul>
     </>
 )
 

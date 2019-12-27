@@ -1,15 +1,12 @@
 import React from 'react'
 import Calendario from '../Organism/Calendario';
-import Fruta from './frutasyverduras.jpg'
+import Banner from '../Template/Banner';
 
 class Planificador extends React.Component{
     render(){
         return (
-            <div>
-                <div className='title'>
-                <h1 className='title_titulo'>COMIDAS SEMANALES</h1>
-                <img src={Fruta} alt='Frutas y verduras' className='title_imagen'/>
-                </div>
+            <div className ='container'>
+                <Banner/>
                 <Calendario/>
             </div>
             

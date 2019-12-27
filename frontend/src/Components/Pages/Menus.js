@@ -1,9 +1,22 @@
 import React from 'react'
+import MostrarMenu from '../Organism/MostrarMenu'
+import GridMenues from '../Organism/GridMenues'
 
 class Menus extends React.Component{
+
+    constructor(props){
+        super(props)
+        this.state = {menues:[]}
+    }
+    
     render(){
-        return(
-            <h1>Menus</h1>
+        return(            
+            <div className='container'>
+                <h1>MENUS CARGADOS</h1>
+                <GridMenues  menues ={this.state.menues}/>
+                
+                {/* <MostrarMenu/> */}
+            </div>
         )
     }
 }

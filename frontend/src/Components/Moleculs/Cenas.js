@@ -30,7 +30,7 @@ class Cenas extends React.Component {
             return (
                 <div key={cena._id} className='calendario-comidas_plato'>
                     <h5> {cena.nombre} </h5>
-                    <Link to={`/menu/${cena._id}`}><img className='calendario-comidas_imagen' src={require(`../../../public/uploads/${cena.img}`)} /></Link>
+                    <Link to={`/menu/${cena._id}`}><img className='calendario-comidas_imagen' alt='imagen-cena' src={require(`../../../public/uploads/${cena.img}`)} /></Link>
                     <h6 className='parrafo' >{cena.time}</h6>
                 </div>
             )

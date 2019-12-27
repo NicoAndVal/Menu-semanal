@@ -34,7 +34,7 @@ class Almuerzos extends React.Component{
             return(
                 <div key={almuerzo._id} className='calendario-comidas_plato'>
                     <h5> {almuerzo.nombre} </h5>
-                    <Link to={`/menu/${almuerzo._id}`}><img className='calendario-comidas_imagen' src={require(`../../../public/uploads/${almuerzo.img}`)}/></Link>
+                    <Link to={`/menu/${almuerzo._id}`}><img className='calendario-comidas_imagen'  alt='imagen-almuerzo' src={require(`../../../public/uploads/${almuerzo.img}`)}/></Link>
                     <h6 className ='parrafo' >{almuerzo.time}</h6>
                 </div>
             )
