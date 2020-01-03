@@ -6,9 +6,12 @@ import { useContext } from 'react'
 
 const Menues =() =>{
     const {menues} = useContext(MenuContext)
+    
+    
+    
 
     return(
-        <GridMenues menues = {menues} />
+        <GridMenues menues = {menues}  />
     )
 }
 

@@ -5,16 +5,14 @@ import { ADD_TO_CART, REMOVE_FROM_CART } from './action'
 const CartProvider = ({children}) =>{
 
     const initialState = {
-        cart:[]
+        cart: ''
     }
 
     const cartReducer = (state,{type,menues}) =>{
-        
-        console.log(menues)
-
         if(type ===ADD_TO_CART){
             return{
-                cart : state.cart.concat(menues)
+                // cart : state.cart.concat(menues)
+                cart : menues,
             }
         }
 
@@ -26,13 +24,13 @@ const CartProvider = ({children}) =>{
         return state
     }
 
-    const [state,dispatch] = useReducer(cartReducer, initialState)
+    const [state, dispatch] = useReducer(cartReducer, initialState)
 
 
-    return(
-        <CartContext.Provider value={[state,dispatch]}>
-        {children}
-    </CartContext.Provider>
+    return (
+        <CartContext.Provider value={[state, dispatch]}>
+            {children}
+        </CartContext.Provider>
     )
 }
 

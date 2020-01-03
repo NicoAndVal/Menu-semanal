@@ -1,13 +1,45 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import GrillaMobil from '../Atomic/GrillaMobil'
+import DayContext from '../../Context/Dishes/DayContext'
+import MenuContext from '../../Context/MenuContext'
+import CartContext from '../../Context/Cart/CartContext'
 
-const Domingo = () =>{
+let desayuno = ''
+let almuerzo = ''
+let cena = ''
+
+const Domingo = () => {
+    const [state] = useContext(CartContext)
+    const {menues} = useContext(MenuContext)
+    const [stateDay] = useContext(DayContext)
+
+
+    if(stateDay.desayunos ==='DESAYUNO'){
+        desayuno = menues.find(m => m._id ===state.cart)
+        stateDay.desayunos = ''
+        console.log('entro al desayuno ')
+    }
+    if(stateDay.almuerzos ==='ALMUERZO'){
+        almuerzo = menues.find(m => m._id ===state.cart)
+        stateDay.almuerzos = ''
+        console.log('entro al almuerzo')
+    }
+    if(stateDay.cenas ==='CENA'){
+        cena = menues.find(m => m._id ===state.cart)
+        stateDay.cenas = ''
+        console.log('entro al cena ')
+    }
+
+    console.log(state.cart)
+
+    console.log(window.history.back)
+  
     return(
         <div className='calendario'>
-        <GrillaMobil dia = 'Domingo'/>
-        <button>AGREGAR MENU</button>
-        <button>AGREGAR MENU</button>
-        <button>AGREGAR MENU</button>
+            {
+               desayuno?<GrillaMobil dia = 'DOMINGO' desayuno ={desayuno} almuerzo={almuerzo} cena = {cena}/>:
+               <GrillaMobil dia = 'DOMINGO' desayuno={desayuno} almuerzo={almuerzo} cena = {cena}/>
+            }
         </div>
     )
 }

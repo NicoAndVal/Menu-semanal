@@ -3,8 +3,8 @@ import { NavLink } from 'react-router-dom'
 
 const NavBarMobil = () => {
     return (
-        <nav className="navbar navbar-dark bg-dark">
-            <a className="navbar-brand" href="#">NAVEGACIÓN</a>
+        <nav className="navbar navbar-dark " style={{'background-color':'#e3f6fd'}}>
+            <a className="navbar-brand" href= '/'>NAVEGACIÓN</a>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
@@ -18,7 +18,7 @@ const NavBarMobil = () => {
                         <NavLink to='/agregarmenu' className='nav-link'>Agregar Menu</NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink to='/mostrarmenu' className='nav-link'>Menus</NavLink>
+                        <NavLink to='/menues' className='nav-link'>Menus</NavLink>
 
                     </li>
                     <li className="nav-item">
@@ -28,7 +28,7 @@ const NavBarMobil = () => {
 
 
                     <li className="nav-item dropdown">
-                        <a className="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">DÍAS DE LA SEMANA</a>
+                        <a className="nav-link dropdown-toggle" href="/" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">DÍAS DE LA SEMANA</a>
                         <div className="dropdown-menu" aria-labelledby="dropdown01">
                             <NavLink to='/' className="dropdown-item">lUNES</NavLink>
                             <NavLink to='/martes' className="dropdown-item">MARTE</NavLink>

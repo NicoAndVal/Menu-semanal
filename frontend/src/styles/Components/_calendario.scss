@@ -1,11 +1,5 @@
 @import '../Base/variable';
 
-.calendario{
-
-    
-    
-}
-
 .calendario-comidas{
     display: grid;
     grid-row: span 7;
@@ -32,5 +26,37 @@
         border-radius: 10px;
         margin:10px 0 10px 30px
     }
+
+    &_title{
+        color: white;
+        text-align: center;
+    }
+
+    &-contenedor{
+        background: $colorPrimario;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        &_boton{
+            padding: 40PX;
+            background: $colorSecundario;
+            border-radius: 5%;
+            color: white;
+            justify-content: center;
+            align-items: center;
+
+            .link{
+                color: white;   
+            }
+
+            &:hover{
+                background: $colorPrimario;
+                color: white;
+            }
+        }
+    }
+
 
 }

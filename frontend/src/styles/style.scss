@@ -2,13 +2,24 @@
 @import './Base/variable';
 @import './Components/mostrarMenus';
 
+
+//MENU DE NAVEGACIÓN 
+.menu-navegacion{
+    display: flex;
+    justify-content: space-around;
+    background: $colorPrimario;
+    padding: 2rem;
+}
+
+
 //CALENDARIO
 .calendario {
     display: grid;
     max-width: 100vw;
     grid-template-columns: 20% 80%;
-    grid-template-rows: 50px repeat(3, 250px);
+    grid-template-rows: 50px repeat(3, 300px);
 
+   
     &_comida{
         transform: rotate(90deg)
     }
@@ -20,34 +31,40 @@
     .almuerzo{
         grid-row: 3/4;
     }
-
-    .cena{
-        grid-row: 4/5;
-    }
-
+.cena {
+    grid-row: 4/5;
+}
 
 
-    &_dias {
-        background: $colorPrimario;
-        color: white;
+
+&_dias {
+    background: $colorPrimario;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
+}
+
+&_instancia {
+    background: $colorPrimario;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
+
+    &_receta {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        border: 1px solid white;
+        flex-direction: column;
     }
-    
-    &_instancia {
-        background: $colorPrimario;
-        color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border: 1px solid white;
-        }
+}
 
         &:nth-child(even) {
             background: $colorSecundario;
         }
+
+    
 
 
 }

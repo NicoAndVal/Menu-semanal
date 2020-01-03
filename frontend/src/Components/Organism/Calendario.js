@@ -1,7 +1,5 @@
 import React from 'react'
-import Almuerzos from '../Moleculs/Almuerzos'
-import Desayunos from '../Moleculs/Desayunos'
-import Cenas from '../Moleculs/Cenas'
+
 
 class Calendario extends React.Component{
     render(){

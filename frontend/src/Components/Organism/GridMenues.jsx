@@ -9,7 +9,6 @@ const GridMenus = ({ menues }) => {
     return (
         <div className='container'>
             <div className='row'>
-                {console.log(menues)}
                 {menues.map(menu => {
                     return (
                         <div className='col-4' key={menu._id}>
