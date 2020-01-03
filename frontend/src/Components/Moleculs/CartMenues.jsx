@@ -40,8 +40,8 @@ const CartMenues = ({ id, nombre, elaboracion, time, porciones, instancia, image
                             } className="btn btn-success cartMenues_ver">AGREGAR AL CALENDARIO
                             </button>
                         </Link> :
-                        <form  className='grid-menus_button'>
-                            <button className="btn btn-success">VER</button>
+                        <form >
+                            <button className="btn btn-success calendario-comidas_ver">VER</button>
                             <button className="btn btn-danger">ELIMINAR</button>
                         </form>
                 }
