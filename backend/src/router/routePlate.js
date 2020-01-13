@@ -29,7 +29,6 @@ const postPlato = (req,res) =>{
             guardarPlato()
         }else{
             //dirección imagen
-            console.log(req.file)
             const direccionImagen = req.file.path
             const ext  = path.extname(req.file.originalname).toLowerCase()
             const targetPath = path.resolve(`../frontend/public/uploads/${urlImg}${ext}`)

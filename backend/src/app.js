@@ -6,8 +6,15 @@ const express = require('express')
       router = require('./router')
       cors = require('cors')
       multer = require('multer')
+      flash = require('connect-flash')
+      session = require('express-session')
+      passport = require('passport')
 
 
+//INITIALIZACION
+require('./config/passport')
+
+//MIDDLEWARE
 app.set('port',process.env.PORT)
     .use(morgan('dev'))
     .use(express.json())
@@ -20,8 +27,28 @@ app.set('port',process.env.PORT)
         next();
       })
     .use(multer({dest: path.join(__dirname,'../../frontend/public/uploads/temp')}).single('imagen'))
+    .use(session({
+      secret:'mysecretapp',
+      resave:true,
+      saveUninitialized:true
+      }))
+    .use(passport.initialize())
+    .use(passport.session())
+    .use(flash())
+
+//GLOBAL VARIABLE
+
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  res.locals.user = req.user || null;
+  next();
+});
+
 
 app.use('/',router)
+
 
 
 

@@ -14,7 +14,7 @@ const DayProvider = ({children}) =>{
 
     const dayReducer = (state,{type,instancia,dia}) =>{
         console.log(type)
-        if(type ===DESAYUNO_LUNES ){
+        if(type===DESAYUNO_LUNES ){
             return{
                 desayunos : instancia,
                 dia: dia

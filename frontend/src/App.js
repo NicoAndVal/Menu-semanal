@@ -3,23 +3,23 @@ import AppRoute from './AppRoute';
 import MenuProvider from './Context/MenuProvider';
 import CartProvider from './Context/Cart/CartProvider'
 import DayProvider from './Context/Dishes/DayProvider'
-
+import DishesUserProvider from './Context/DishesUser/DishesUserProvider'
 
 function App() {
 
   
   return(
-    <MenuProvider>
-      <CartProvider>
-        <DayProvider>
+    <DishesUserProvider>
+      <MenuProvider>
+        <CartProvider>
+          <DayProvider>
+            <AppRoute />
+          </DayProvider>
+        </CartProvider>
+      </MenuProvider>
+    </DishesUserProvider>
+  )
 
-          <AppRoute/>
-        </DayProvider>
-
-      </CartProvider>
-    </MenuProvider>
-  )   
-    
   
 }
 
