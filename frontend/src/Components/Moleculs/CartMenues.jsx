@@ -12,9 +12,7 @@ const CartMenues = ({ id, nombre, elaboracion, time, porciones, instancia, image
     const [stateDay] = useContext(DayContext)
     
     let validarPedido = false 
-    
-    console.log(stateDay)
-    
+        
     if(stateDay.desayunos || stateDay.almuerzos || stateDay.cenas){
         validarPedido = true
     }
@@ -41,7 +39,17 @@ const CartMenues = ({ id, nombre, elaboracion, time, porciones, instancia, image
                             </button>
                         </Link> :
                         <form >
-                            <button className="btn btn-success calendario-comidas_ver">VER</button>
+                            <Link to={`/menu/${id}`}>
+                                <button className="btn btn-success calendario-comidas_ver"
+                                    onClick = {() =>{
+                                        dispatch({
+                                            type:ADD_TO_CART,
+                                            menues: id
+                                        })
+                                    }}
+                                >VER</button>
+                            
+                            </Link>
                             <button className="btn btn-danger">ELIMINAR</button>
                         </form>
                 }

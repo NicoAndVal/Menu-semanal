@@ -1,6 +1,7 @@
 @import './Components/calendario';
 @import './Base/variable';
 @import './Components/mostrarMenus';
+@import './Components/home';
 
 
 //MENU DE NAVEGACIÓN 
@@ -14,7 +15,7 @@ body{
     display: flex;
     justify-content: space-around;
     padding: 2rem;  
-    margin-bottom: 2rem;
+    margin-bottom: 0.2rem;
     background: #f5f5f5;
 }
 
@@ -103,6 +104,27 @@ body{
         padding: 2rem;
     }
 
+}
+
+//LA IMAGEN DE LA PÁGINA DEL MENU 
+
+.cardMenu{
+    &_container{
+        background: white;
+    }
+}
+
+@media screen and (min-width:768px){
+    .cardMenu{
+
+        &_imagen{
+            height: 23rem;
+        }
+    }
+}
+
+.grid_menu{
+    margin-bottom: 0.6rem;
 }
 
 

@@ -1,49 +1,43 @@
-import React,{useContext,useEffect,useState} from 'react'
+import React,{useContext} from 'react'
 import GrillaMobil from '../Atomic/GrillaMobil'
 import DayContext from '../../Context/Dishes/DayContext'
 import MenuContext from '../../Context/MenuContext'
 import CartContext from '../../Context/Cart/CartContext'
 import DishesUserContext from '../../Context/DishesUser/DishesUserContext'
+import { ADD_DISHES_USER } from '../../Context/DishesUser/action'
 
 let desayuno = ''
 let almuerzo = ''
 let cena = ''
-let platos = ''
 let lunes = ''
 let martes = ''
 let miercoles = ''
 let jueves = ''
 let sabado = ''
 let domingo = ''
+let viernes = ''
 
 const Viernes = () =>{
-    let [stateUser] = useContext(DishesUserContext)
+    let [stateUser,dispatch] = useContext(DishesUserContext)
     const [state] = useContext(CartContext)  
     const {menues} = useContext(MenuContext) 
     const [stateDay] = useContext(DayContext) 
 
     const userLogged = localStorage.getItem('token')
-    
-    let [platos, setPlatos] = useState()
-    
-    useEffect(() => {
-        fetch(`http://localhost:5000/api/user_plate/${userLogged}`)
-        .then(res => res.json())
-        .then(res => {
-            setPlatos(platos=res.viernes)
-        })
-        if(stateUser){
-            //SE OBTIENEN LOS PLATOS DEL CONTEXTO
-            lunes = stateUser.stateUser.lunes
-            martes = stateUser.stateUser.martes
-            miercoles = stateUser.stateUser.miercoles
-            jueves = stateUser.stateUser.jueves
-            sabado = stateUser.stateUser.sabado
-            domingo = stateUser.stateUser.domingo
-        }
 
-    },[])
-    
+    if(stateUser){
+        //SE OBTIENEN LOS PLATOS DEL CONTEXTO
+        lunes = stateUser.stateUser.lunes
+        martes = stateUser.stateUser.martes
+        miercoles = stateUser.stateUser.miercoles
+        jueves = stateUser.stateUser.jueves
+        viernes = stateUser.stateUser.viernes
+        sabado = stateUser.stateUser.sabado
+        domingo = stateUser.stateUser.domingo
+        desayuno = viernes.desayuno
+        almuerzo = viernes.almuerzo
+        cena = viernes.cena
+    }    
     
     if(stateDay.desayunos ==='DESAYUNO'){
         desayuno = menues.find(m => m._id === state.cart)
@@ -62,16 +56,13 @@ const Viernes = () =>{
             sabado,
             domingo
         }
-        
-        fetch(`http://localhost:5000/api/user_plate/${userLogged}`,{
-            method:'PUT',
-            body: JSON.stringify(datos2),
-            headers:{
-                'Content-Type': 'application/json'
-            }
+        dispatch({
+            type : ADD_DISHES_USER,
+            dia : 'agregar',
+            plato : datos2 
+
         })
-        .then(res =>res.json())
-        .then(res =>console.log(res))
+        
         
         
         
@@ -95,15 +86,13 @@ const Viernes = () =>{
             domingo
         }
         
-        fetch(`http://localhost:5000/api/user_plate/${userLogged}`,{
-            method:'PUT',
-            body: JSON.stringify(datos2),
-            headers:{
-                'Content-Type': 'application/json'
-            }
+        dispatch({
+            type : ADD_DISHES_USER,
+            dia : 'agregar',
+            plato : datos2 
+
         })
-        .then(res =>res.json())
-        .then(res =>console.log(res))
+        
         
         console.log('entro al almuerzo')
     }
@@ -125,29 +114,23 @@ const Viernes = () =>{
             domingo
         }
         
-        fetch(`http://localhost:5000/api/user_plate/${userLogged}`,{
-            method:'PUT',
-            body: JSON.stringify(datos2),
-            headers:{
-                'Content-Type': 'application/json'
-            }
+        dispatch({
+            type : ADD_DISHES_USER,
+            dia : 'agregar',
+            plato : datos2 
+
         })
-        .then(res =>res.json())
-        .then(res =>console.log(res))
+        
         
         console.log('entro al cena ')
     } 
     
-    if(platos){
-        desayuno = platos.desayuno
-        almuerzo = platos.almuerzo
-        cena = platos.cena
-    }
+    
     
     return(
         <div className='calendario'>
             {
-                platos?<GrillaMobil dia = 'VIERNES' desayuno={platos.desayuno} almuerzo={platos.almuerzo} cena={platos.cena}/>:
+                viernes?<GrillaMobil dia = 'VIERNES' desayuno={viernes.desayuno} almuerzo={viernes.almuerzo} cena={viernes.cena}/>:
                 <GrillaMobil dia = 'VIERNES' desayuno={desayuno} almuerzo={almuerzo} cena = {cena}/>
             }
         </div>

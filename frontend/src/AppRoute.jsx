@@ -17,7 +17,7 @@ import Protected from './Components/Routes/Protected'
 import Public from './Components/Routes/Public'
 import Header from './Components/Organism/Header'
 import Home from './Components/Pages/Home'
-
+import Menu from './Components/Pages/Menu'
 
 const AppRoute = () => {
     return (
@@ -34,6 +34,7 @@ const AppRoute = () => {
                 <Protected path='/sabado'  component={Sabado} />
                 <Protected path='/domingo'  component={Domingo} />
                 <Protected path='/menues' component={Menues} />
+                <Protected path ='/menu/:id' component = {Menu} />
                 <Protected path='/agregarmenu' component={AgregarMenu} />
 
                 <Public path='/registro' component={Signin} />

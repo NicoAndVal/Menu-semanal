@@ -47,18 +47,55 @@ const postSignIn = passport.authenticate('local',{
 
 const updateUserPlate = async(req,res) =>{
     const {lunes,martes,miercoles,jueves,viernes,sabado,domingo} = req.body
-    console.log(req.params.id)
-    const platos = await User.findByIdAndUpdate(req.params.id,{lunes,martes,miercoles,jueves,viernes,sabado,domingo})
-    res.json(platos)
+    await User.findByIdAndUpdate(req.params.id,{lunes,martes,miercoles,jueves,viernes,sabado,domingo})
+    const newPlate = await User.findById(req.params.id)
+    res.json(newPlate)
 }
 
 
 const getUserPlate = async(req,res)  =>{
-    const {user} = req.params.id
-    const userFind = await User.findOne(user)
+    const id = req.params.id
+    const userFind = await User.findById(id)
     res.json(userFind)
 
 }
+
+const deleteUserPlate = async(req,res) =>{
+    const id = req.params.id
+    const {plato,dia}= req.body
+    console.log(dia)
+
+    switch(dia){
+        case 'lunes':
+            await User.findByIdAndUpdate(id,{'lunes':plato})
+            break
+        case 'martes':
+            await User.findByIdAndUpdate(id,{'martes':plato})
+            break
+        case 'miercoles':
+            await User.findByIdAndUpdate(id,{'miercoles':plato})
+            break
+        case 'jueves':
+            await User.findByIdAndUpdate(id,{'jueves':plato})
+            break
+        case 'viernes':
+            await User.findByIdAndUpdate(id,{'viernes':plato})
+            break
+        case 'sabado':
+            await User.findByIdAndUpdate(id,{'sabado':plato})
+            break
+        case 'domingo':
+            await User.findByIdAndUpdate(id,{'domingo':plato})
+            break
+        default:
+            console.log('no se realizo ningúna acción')
+            break
+        }
+   
+    const newPlate = await User.findById(req.params.id)
+    res.json(newPlate)
+}
+
 
 const userLogout = (req,res,next) =>{
     req.logOut()
@@ -71,5 +108,6 @@ module.exports = {
     postSignIn,
     userLogout,
     updateUserPlate,
-    getUserPlate
+    getUserPlate,
+    deleteUserPlate
 }

@@ -2,90 +2,358 @@ import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import DayContext from '../../Context/Dishes/DayContext'
 import { DESAYUNO_LUNES, ALMUEZO_LUNES, CENA_LUNES } from '../../Context/Dishes/actions'
+import DishesUserContext from '../../Context/DishesUser/DishesUserContext'
+import { REMOVE_DISHES_USER } from '../../Context/DishesUser/action'
 
-
+// let martes = ''
+// let miercoles = ''
+// let jueves = ''
+// let viernes = ''
+// let sabado = ''
+// let domingo = ''
+// let lunes = ''
+let datos2 = ''
 
 const GrillaMobil = ({ dia, desayuno, almuerzo, cena }) => {
 
     const [, dispatch] = useContext(DayContext)
+    let [,dispatchUser] = useContext(DishesUserContext)
 
     let diaContexto = dia
-
-    let platos = {
-        "desayuno": desayuno,
-        "almuerzo": almuerzo,
-        "cena": cena
-    }
-
-    const userLogged = localStorage.getItem('token')
-
-
-    //SE UTILIZA EN EL CASO DE QUERER USAR EL LUNES COMO HOME
-    // if (diaContexto === 'LUNES') {
-    //     diaContexto = ''
-    // }
-
-
+    
+    
     const eliminarCalendario = e => {
         e.preventDefault()
-        const value = e.target.instancia.value
-        switch (value) {
-            case 'desayuno':
-                platos = {
-                    user: userLogged,
-                    lunes: {
-                        "desayuno": '',
-                        "almuerzo": almuerzo,
-                        "cena": cena
-                    }
-                }
-                console.log('SE ELIMINO EL DESAYUNO')
-                break;
-            case 'almuerzo':
-                platos = {
-                    user: userLogged,
-                    lunes: {
-                        "desayuno":desayuno,
-                        "almuerzo": '',
-                        "cena": cena
-                    }
-                }
-                console.log('SE ELIMINO EL ALMUERZO')
-                break;
-            case 'cena':
-                platos = {
-                    user: userLogged,
-                    lunes: {
-                        "desayuno": desayuno,
-                        "almuerzo": almuerzo,
-                        "cena":''
-                    }
-                }
-                console.log('SE ELIMINO EL CENA')
-                break;
-            default:
-                console.log('NO SE REALIZO NINGUNA ACCIÓN')
-        }
-        console.log(platos)
-
         const confirm = window.confirm('ESTAS SEGURO DE ELIMINAR EL PLATO DEL MENÚ')
-        
+        const value = e.target.instancia.value
         if(confirm){
-            fetch(`http://localhost:5000/api/user_plate/${userLogged}`,{
-                method:'PUT',
-                body: JSON.stringify(platos),
-                headers:{
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(res =>res.json())
-            .then(res =>{
+            switch (value) {
+                case 'desayuno':
+                    switch (dia){
+                        case 'LUNES':
+                            datos2 = {
+                                    "desayuno": '',
+                                    "almuerzo": almuerzo,
+                                    "cena": cena    
+                            }
+                            
+    
+                            dispatchUser({
+                                type:REMOVE_DISHES_USER,
+                                dia: 'lunes',
+                                plato : datos2
+    
+                            })
+                        break;
+                        case 'MARTES':
+                            datos2 = {
+                                    "desayuno": '',
+                                    "almuerzo": almuerzo,
+                                    "cena": cena    
+                            }
+    
+                            dispatchUser({
+                                type:REMOVE_DISHES_USER,
+                                dia: 'martes',
+                                plato : datos2
+    
+                            })
+                        break;
+                        case 'MIERCOLES':
+                            datos2 = {
+                                    "desayuno": '',
+                                    "almuerzo": almuerzo,
+                                    "cena": cena    
+                            }
+    
+                            dispatchUser({
+                                type:REMOVE_DISHES_USER,
+                                dia: 'miercoles',
+                                plato : datos2
+    
+                            })
+                        break;
+                        case 'JUEVES':
+                            datos2 = {
+                                    "desayuno": '',
+                                    "almuerzo": almuerzo,
+                                    "cena": cena    
+                            }
+    
+                            dispatchUser({
+                                type:REMOVE_DISHES_USER,
+                                dia: 'jueves',
+                                plato : datos2
+    
+                            })
+                        break;
+                        case 'VIERNES':
+                            datos2 = {
+                                    "desayuno": '',
+                                    "almuerzo": almuerzo,
+                                    "cena": cena    
+                            }
+    
+                            dispatchUser({
+                                type:REMOVE_DISHES_USER,
+                                dia: 'viernes',
+                                plato : datos2
+    
+                            })
+                        break;
+                        case 'SABADO':
+                            datos2 = {
+                                    "desayuno": '',
+                                    "almuerzo": almuerzo,
+                                    "cena": cena    
+                            }
+    
+                            dispatchUser({
+                                type:REMOVE_DISHES_USER,
+                                dia: 'sabado',
+                                plato : datos2
+    
+                            })
+                        break;
+                        case 'DOMINGO':
+                            datos2 = {
+                                    "desayuno": '',
+                                    "almuerzo": almuerzo,
+                                    "cena": cena    
+                            }
+    
+                            dispatchUser({
+                                type:REMOVE_DISHES_USER,
+                                dia: 'domingo',
+                                plato : datos2
+    
+                            })
+                        break;
+                        default:
+                            console.log('NO SE ELIMINO NINGÚN PLATO')
+                    }
+    
+                    console.log('SE ELIMINO EL DESAYUNO')
+                    break;
+    
+                case 'almuerzo':
+                    switch (dia) {
+                        case 'LUNES':
+                        datos2 = {
+                                "desayuno": desayuno,
+                                "almuerzo": '',
+                                "cena": cena    
+                        }
 
-                window.location =(`http://localhost:3000/${dia.toLowerCase()}`)
-            })
+                        dispatchUser({
+                            type:REMOVE_DISHES_USER,
+                            dia: 'lunes',
+                            plato : datos2
+
+                        })
+                    break;
+                    case 'MARTES':
+                        datos2 = {
+                            "desayuno": desayuno,
+                            "almuerzo": '',
+                            "cena": cena    
+                    }
+
+                        dispatchUser({
+                            type:REMOVE_DISHES_USER,
+                            dia: 'martes',
+                            plato : datos2
+
+                        })
+                    break;
+                    case 'MIERCOLES':
+                        datos2 = {
+                            "desayuno": desayuno,
+                            "almuerzo": '',
+                            "cena": cena    
+                    }
+
+                        dispatchUser({
+                            type:REMOVE_DISHES_USER,
+                            dia: 'miercoles',
+                            plato : datos2
+
+                        })
+                    break;
+                    case 'JUEVES':
+                        datos2 = {
+                            "desayuno": desayuno,
+                            "almuerzo": '',
+                            "cena": cena    
+                    }
+
+                        dispatchUser({
+                            type:REMOVE_DISHES_USER,
+                            dia: 'jueves',
+                            plato : datos2
+
+                        })
+                    break;
+                    case 'VIERNES':
+                        datos2 = {
+                            "desayuno": desayuno,
+                            "almuerzo": '',
+                            "cena": cena    
+                    }
+
+                        dispatchUser({
+                            type:REMOVE_DISHES_USER,
+                            dia: 'viernes',
+                            plato : datos2
+
+                        })
+                    break;
+                    case 'SABADO':
+                        datos2 = {
+                            "desayuno": desayuno,
+                            "almuerzo": '',
+                            "cena": cena    
+                    }
+
+                        dispatchUser({
+                            type:REMOVE_DISHES_USER,
+                            dia: 'sabado',
+                            plato : datos2
+
+                        })
+                    break;
+                    case 'DOMINGO':
+                        datos2 = {
+                            "desayuno": desayuno,
+                            "almuerzo": '',
+                            "cena": cena    
+                    }
+
+                        dispatchUser({
+                            type:REMOVE_DISHES_USER,
+                            dia: 'domingo',
+                            plato : datos2
+
+                        })
+                    break;
+                        default:
+                            console.log('NO SE ELIMINO NINGÚN PLATO')
+                    }
+    
+                    console.log('SE ELIMINO EL ALMUERZO')
+                    break;
+                case 'cena':
+                    switch (dia) {
+                        case 'LUNES':
+                        datos2 = {
+                                "desayuno": desayuno,
+                                "almuerzo": almuerzo,
+                                "cena": ''    
+                        }
+
+                        dispatchUser({
+                            type:REMOVE_DISHES_USER,
+                            dia: 'lunes',
+                            plato : datos2
+
+                        })
+                    break;
+                    case 'MARTES':
+                        datos2 = {
+                            "desayuno": desayuno,
+                            "almuerzo": almuerzo,
+                            "cena": ''    
+                    }
+
+                        dispatchUser({
+                            type:REMOVE_DISHES_USER,
+                            dia: 'martes',
+                            plato : datos2
+
+                        })
+                    break;
+                    case 'MIERCOLES':
+                        datos2 = {
+                            "desayuno": desayuno,
+                            "almuerzo": almuerzo,
+                            "cena": ''    
+                    }
+
+                        dispatchUser({
+                            type:REMOVE_DISHES_USER,
+                            dia: 'miercoles',
+                            plato : datos2
+
+                        })
+                    break;
+                    case 'JUEVES':
+                        datos2 = {
+                            "desayuno": desayuno,
+                            "almuerzo": almuerzo,
+                            "cena": ''    
+                    }
+
+                        dispatchUser({
+                            type:REMOVE_DISHES_USER,
+                            dia: 'jueves',
+                            plato : datos2
+
+                        })
+                    break;
+                    case 'VIERNES':
+                        datos2 = {
+                            "desayuno": desayuno,
+                            "almuerzo": almuerzo,
+                            "cena": ''    
+                    }
+
+                        dispatchUser({
+                            type:REMOVE_DISHES_USER,
+                            dia: 'viernes',
+                            plato : datos2
+
+                        })
+                    break;
+                    case 'SABADO':
+                        datos2 = {
+                            "desayuno": desayuno,
+                            "almuerzo": almuerzo,
+                            "cena": ''    
+                    }
+
+                        dispatchUser({
+                            type:REMOVE_DISHES_USER,
+                            dia: 'sabado',
+                            plato : datos2
+
+                        })
+                    break;
+                    case 'DOMINGO':
+                        datos2 = {
+                            "desayuno": desayuno,
+                            "almuerzo": almuerzo,
+                            "cena": ''    
+                    }
+
+                        dispatchUser({
+                            type:REMOVE_DISHES_USER,
+                            dia: 'domingo',
+                            plato : datos2
+
+                        })
+                    break;
+                        default:
+                            console.log('NO SE ELIMINO NINGÚN PLATO')
+                    }
+    
+                    console.log('SE ELIMINO LA CENA')
+                    break;
+    
+    
+                default:
+                    console.log('NO SE REALIZO NINGUNA ACCIÓN')
+            }
         }
-        console.log(desayuno,almuerzo,cena)
-
 
     }
 

@@ -1,0 +1,23 @@
+@import '../Base/variable';
+
+
+.home{
+    display: grid;
+    grid-template-rows: 400px repeat(9, auto);
+
+    &_banner{
+        width: 100%;
+        height: 100%;
+    }
+
+    &_card{
+        padding: 1.5rem 0;
+        grid-row: span 3;
+        text-align: center;
+
+        &__icon{
+            font-size: 6rem;
+        }
+       
+    }
+}

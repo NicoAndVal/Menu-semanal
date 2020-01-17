@@ -28,6 +28,7 @@ api.post('/api/postUsers', passport.authenticate('local'),(req,res) =>{
 api.get('/api/logOutUser', User.userLogout)
 api.put('/api/user_plate/:id',User.updateUserPlate)
 api.get('/api/user_plate/:id',User.getUserPlate)
+api.put('/api/user_plate_remove/:id',User.deleteUserPlate)
 
 //RUTA DE LAS SESIONES
 api.post('/api/user_plate',UserPlate.postUserPlate)

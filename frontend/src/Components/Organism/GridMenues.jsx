@@ -7,11 +7,11 @@ import withLoader from '../HOC/withLoader'
 
 const GridMenus = ({ menues }) => {
     return (
-        <div className='container'>
+        <div className='container' >
             <div className='row'>
                 {menues.map(menu => {
                     return (
-                        <div className='col-4' key={menu._id}>
+                        <div className='col-sm-12 col-md-4 grid_menu' key={menu._id}>
                             <CartMenues
                                 id={menu._id}
                                 nombre={menu.nombre}
