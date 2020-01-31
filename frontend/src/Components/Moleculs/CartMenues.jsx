@@ -1,20 +1,46 @@
-import React,{useContext} from 'react'
+import React,{useContext,useEffect,useState} from 'react'
 import PropTypes from 'prop-types'
 import CartContext from '../../Context/Cart/CartContext'
 import { ADD_TO_CART} from '../../Context/Cart/action'
 import { Link } from 'react-router-dom'
 import DayContext from '../../Context/Dishes/DayContext'
+import MenuContext from '../../Context/MenuContext'
 
 
-const CartMenues = ({ id, nombre, elaboracion, time, porciones, instancia, imagen }) => {
-    
+
+const CartMenues = ({ id, nombre, time, porciones, instancia, imagen }) => {
+        
     const [,dispatch] = useContext(CartContext)
-    const [stateDay] = useContext(DayContext)
+    let [stateDay] = useContext(DayContext)
+    let [,dispatchPlate] = useContext(MenuContext)
     
     let validarPedido = false 
-        
+    
     if(stateDay.desayunos || stateDay.almuerzos || stateDay.cenas){
         validarPedido = true
+    }
+    
+    let [size, setSize] = useState({
+        ancho: window.innerWidth
+    })
+
+    
+    useEffect(() =>{
+        const handleResize = () =>{
+            setSize({
+                ancho: window.innerWidth
+            })
+        }
+
+        
+        
+        window.addEventListener('resize', handleResize)
+    },[])
+    
+    let dia = stateDay.dia
+    
+    if(size.ancho>999){
+        dia = 'planificador'
     }
     
     return (
@@ -27,36 +53,38 @@ const CartMenues = ({ id, nombre, elaboracion, time, porciones, instancia, image
                 <h6 className="card-title">{instancia}</h6>
                 {
                     validarPedido ?
-
-                        <Link to={`/${stateDay.dia}`}>
+                    
+                    <Link to={`/${dia}`}>
                                 <button onClick={() =>
                                 dispatch({
                                     type: ADD_TO_CART,
                                     menues: id
                                 })
-
+                                
                             } className="btn btn-success cartMenues_ver">AGREGAR AL CALENDARIO
                             </button>
                         </Link> :
                         <form >
                             <Link to={`/menu/${id}`}>
-                                <button className="btn btn-success calendario-comidas_ver"
-                                    onClick = {() =>{
-                                        dispatch({
-                                            type:ADD_TO_CART,
-                                            menues: id
-                                        })
-                                    }}
-                                >VER</button>
-                            
+                                <button className="btn btn-success calendario-comidas_ver"                           >VER</button>
                             </Link>
-                            <button className="btn btn-danger">ELIMINAR</button>
+                            <button 
+                            className="btn btn-danger"
+                            onClick={()=>{
+                                dispatchPlate({
+                                    type : 'REMOVE_PLATE',
+                                    id : id
+                                })
+                                
+                            }}
+                            >ELIMINAR</button>
                         </form>
                 }
             </div>
         </div>
     )
 }
+
 
 CartMenues.prototype = {
     id: PropTypes.String,

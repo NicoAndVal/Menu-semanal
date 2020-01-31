@@ -138,7 +138,7 @@ const Lunes = () =>{
         <div className='calendario'>
             {
                 lunes?<GrillaMobil dia = 'LUNES' desayuno={lunes.desayuno} almuerzo={lunes.almuerzo} cena={lunes.cena}/>:
-                <GrillaMobil dia = 'LUNES' desayuno={desayuno} almuerzo={almuerzo} cena = {cena}/>
+                <GrillaMobil dia = 'LUNES' desayuno={desayuno} almuerzo={almuerzo} cena={cena}/>
             }
         </div>
     )

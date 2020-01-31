@@ -12,12 +12,15 @@ const DishesUserProvider = ({children}) =>{
     
     useEffect(() =>{
         const userLogged = localStorage.getItem('token')
+        
+        if(userLogged){
+            fetch(`http://localhost:5000/api/user_plate/${userLogged}`)
+            .then(res => res.json())
+            .then(res => {
+                 setStateUser({stateUser:res})
+            })
+        }
    
-        fetch(`http://localhost:5000/api/user_plate/${userLogged}`)
-        .then(res => res.json())
-        .then(res => {
-             setStateUser({stateUser:res})
-        })
 
        
     },[])
@@ -43,20 +46,7 @@ const DishesUserProvider = ({children}) =>{
 
         }
 
-        // if(type ===REMOVE_DISHES_USER){
-        //     if(dia ==='eliminar'){
-        //         fetch(`http://localhost:5000/api/user_plate/${userLogged}`, {
-        //             method: 'PUT',
-        //             body: JSON.stringify(plato),
-        //             headers: {
-        //                 'Content-Type': 'application/json'
-        //             }
-        //         })
-        //             .then(res => res.json())
-        //             .then(res =>{
-        //                 setStateUser({stateUser:res})
-        //             })
-        //     }
+        
             if(type === REMOVE_DISHES_USER){
                 let datos = {
                     dia:dia,

@@ -11,7 +11,7 @@ const CartProvider = ({children}) =>{
     const cartReducer = (state,{type,menues}) =>{
         if(type ===ADD_TO_CART){
             return{
-                // cart : state.cart.concat(menues)
+
                 cart : menues,
             }
         }

@@ -1,19 +1,21 @@
-import React, { useContext } from 'react'
+import React,{useContext} from 'react'
 import { Link } from 'react-router-dom'
 import DayContext from '../../Context/Dishes/DayContext'
 import { DESAYUNO_LUNES, ALMUEZO_LUNES, CENA_LUNES } from '../../Context/Dishes/actions'
 import DishesUserContext from '../../Context/DishesUser/DishesUserContext'
 import { REMOVE_DISHES_USER } from '../../Context/DishesUser/action'
-
-
 let datos2 = ''
 
-const GrillaMobil = ({ dia, desayuno, almuerzo, cena }) => {
 
+
+const GrillaDesk = ({dia,desayuno,almuerzo,cena}) => {
+    
+    
     const [, dispatch] = useContext(DayContext)
     let [,dispatchUser] = useContext(DishesUserContext)
 
     let diaContexto = dia
+
     
     
     const eliminarCalendario = e => {
@@ -343,8 +345,8 @@ const GrillaMobil = ({ dia, desayuno, almuerzo, cena }) => {
                     console.log('SE ELIMINO LA CENA')
                     break;
     
-    
-                default:
+                    
+                    default:
                     console.log('NO SE REALIZO NINGUNA ACCIÓN')
             }
         }
@@ -352,32 +354,29 @@ const GrillaMobil = ({ dia, desayuno, almuerzo, cena }) => {
     }
 
     return (
-        <>
-            <div className='calendario_instancia'>DÍA</div>
-            <div className='calendario_dias lunes'>{dia}</div>
-            <div className='calendario_instancia desayuno'> <span className='calendario_comida'>DESAYUNO </span> </div>
-            {
+        <div className = 'planificador-comidas'>
+             {
                 desayuno ?
-                    <div className='calendario-comidas_plato'>
-                        <h4 className='calendario-comidas_title'>{desayuno.nombre}</h4>
-                        <img className='calendario-comidas_imagen' src={require(`../../../public/uploads/${desayuno.img}`)} alt='imagen-comida' />
-                        <h6 className='calendario-comidas_title'>{desayuno.time}</h6>
-                        <h6 className='calendario-comidas_title'>{desayuno.porciones}</h6>
+                    <div className = 'planificador-comidas_contenedor'  >
+                        <h4>{desayuno.nombre}</h4>
+                        <img className ='planificador-comidas_imagenes' src={require(`../../../public/uploads/${desayuno.img}`)} alt='imagen-comida' />
+                        <h6>{desayuno.time}</h6>
+                        <h6>{desayuno.porciones}</h6>
                         <form onSubmit={eliminarCalendario}>
                             <input type='text' className ='calendario-comidas_input' name='instancia' defaultValue='desayuno'/>
-                            <button
+                            <button 
                                 className='btn btn-danger'
                             >
                                 ELIMINAR PLATO DEL CALENDARIO</button>
                         </form>
                        
                     </div> :
-                    <div className='calendario-comidas-contenedor'>
+                    <div className = 'planificador-comidas_contenedor'>
                         <Link className='link' to='/desayunos'>
                             <button
                                 onClick={() => dispatch({
                                     type: DESAYUNO_LUNES,
-                                    instancia: 'DESAYUNO',
+                                    instancia: `DESAYUNO_${diaContexto}`,
                                     dia: diaContexto.toLowerCase()
                                 })}
                                 className='calendario-comidas-contenedor_boton'
@@ -394,15 +393,14 @@ const GrillaMobil = ({ dia, desayuno, almuerzo, cena }) => {
 
 
 
-            <div className='calendario_instancia almuerzo'> <span className='calendario_comida'>ALMUERZO </span> </div>
 
             {
                 almuerzo ?
-                    <div className='calendario-comidas_plato'>
-                        <h4 className='calendario-comidas_title'>{almuerzo.nombre}</h4>
-                        <img className='calendario-comidas_imagen' src={require(`../../../public/uploads/${almuerzo.img}`)} alt='imagen-comida' />
-                        <h6 className='calendario-comidas_title'>{almuerzo.time}</h6>
-                        <h6 className='calendario-comidas_title'>{almuerzo.porciones}</h6>
+                    <div className = 'planificador-comidas_contenedor'>
+                        <h4>{almuerzo.nombre}</h4>
+                        <img className ='planificador-comidas_imagenes' src={require(`../../../public/uploads/${almuerzo.img}`)} alt='imagen-comida' />
+                        <h6>{almuerzo.time}</h6>
+                        <h6>{almuerzo.porciones}</h6>
                         <form onSubmit={eliminarCalendario}>
                             <input type='text' className ='calendario-comidas_input' name='instancia' defaultValue='almuerzo'/>
                             <button
@@ -411,13 +409,13 @@ const GrillaMobil = ({ dia, desayuno, almuerzo, cena }) => {
                                 ELIMINAR PLATO DEL CALENDARIO</button>
                         </form>
                     </div> :
-                    <div className='calendario-comidas-contenedor'>
+                    <div className = 'planificador-comidas_contenedor' >
 
                         <Link className='link' to='/almuerzos'>
                             <button
                                 onClick={() => dispatch({
                                     type: ALMUEZO_LUNES,
-                                    instancia: 'ALMUERZO',
+                                    instancia: `ALMUERZO_${diaContexto}`,
                                     dia: diaContexto.toLowerCase()
                                 })}
                                 className='calendario-comidas-contenedor_boton'
@@ -432,14 +430,13 @@ const GrillaMobil = ({ dia, desayuno, almuerzo, cena }) => {
             }
 
 
-            <div className='calendario_instancia cena'> <span className='calendario_comida'>CENA </span> </div>
             {
                 cena ?
-                    <div className='calendario-comidas_plato'>
-                        <h4 className='calendario-comidas_title'>{cena.nombre}</h4>
-                        <img className='calendario-comidas_imagen' src={require(`../../../public/uploads/${cena.img}`)} alt='imagen-comida' />
-                        <h6 className='calendario-comidas_title'>{cena.time}</h6>
-                        <h6 className='calendario-comidas_title'>{cena.porciones}</h6>
+                    <div className = 'planificador-comidas_contenedor' >
+                        <h4>{cena.nombre}</h4>
+                        <img className ='planificador-comidas_imagenes' src={require(`../../../public/uploads/${cena.img}`)} alt='imagen-comida' />
+                        <h6>{cena.time}</h6>
+                        <h6>{cena.porciones}</h6>
                         <form onSubmit={eliminarCalendario}>
                             <input type='text' className ='calendario-comidas_input' name='instancia' defaultValue='cena'/>
                             <button
@@ -448,12 +445,12 @@ const GrillaMobil = ({ dia, desayuno, almuerzo, cena }) => {
                                 ELIMINAR PLATO DEL CALENDARIO</button>
                         </form>
                     </div> :
-                    <div className='calendario-comidas-contenedor'>
+                    <div className = 'planificador-comidas_contenedor'>
                         <Link className='link' to='/cenas'>
                             <button
                                 onClick={() => dispatch({
                                     type: CENA_LUNES,
-                                    instancia: 'CENA',
+                                    instancia: `CENA_${diaContexto}`,
                                     dia: diaContexto.toLowerCase()
                                 })}
                                 className='calendario-comidas-contenedor_boton'
@@ -467,9 +464,8 @@ const GrillaMobil = ({ dia, desayuno, almuerzo, cena }) => {
 
             }
 
-        </>
+        </div>
     )
-
 }
 
-export default GrillaMobil
+export default GrillaDesk

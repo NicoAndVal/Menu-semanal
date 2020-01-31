@@ -4,6 +4,7 @@
 .home{
     display: grid;
     grid-template-rows: 400px repeat(9, auto);
+    grid-gap: .5em;
 
     &_banner{
         width: 100%;
@@ -14,10 +15,39 @@
         padding: 1.5rem 0;
         grid-row: span 3;
         text-align: center;
+        border: 1px solid black;
 
         &__icon{
             font-size: 6rem;
         }
        
+    }
+}
+
+@media screen and (min-width: 768px){
+    .home{
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows:85vh auto ;
+
+        .espacio{
+            grid-row: span 1;
+            grid-column: span 3;
+        }
+
+        &_banner{
+            grid-column: span 3;
+            position: absolute;
+            height: 100vh;
+            top: 0;
+        }
+
+        &_card{
+            grid-column: span 1;
+           
+        }
+
+    
+
+
     }
 }

@@ -1,20 +1,44 @@
-import React from 'react'
+import React,{useContext} from 'react'
+import DayContext from '../../Context/Dishes/DayContext'
+import PlatosPlanificador from './PlatosPlanificador'
+import CleanPlanner from '../Atomic/CleanPlanner'
 
 
-class Calendario extends React.Component{
-    render(){
-        return(
-            <div className ='calendario'>
-                
-                <div className='calendario_instancia'>DIA</div>
-                <div className = 'calendario_dias lunes'>LUNES</div>
-                <div className='calendario_instancia desayuno'> <span className='calendario_comida'>DESAYUNO </span> </div>
-                <div className='calendario_instancia almuerzo'> <span className='calendario_comida'>ALMUERZO </span> </div>
-                <div className='calendario_instancia cena'> <span className='calendario_comida'>CENA </span> </div>
+
+const Calendario = () => {
+    const [stateDay] = useContext(DayContext) 
+
+
+   
+    console.log(stateDay.dia)
+
+    return (
+        <>
+
+            <div className='planificador'>
+                <div className='planificador-instancias'>DIA</div>
+                <div className='planificador-instancias'>DESAYUNOS</div>
+                <div className='planificador-instancias'>ALMUERZOS</div>
+                <div className='planificador-instancias'>CENAS</div>
+                <div className='planificador-dias lunes'>LUNES</div>
+                <div className='planificador-dias martes'>MARTES</div>
+                <div className='planificador-dias miercoles'>MIERCOLES</div>
+                <div className='planificador-dias jueves'>JUEVES</div>
+                <div className='planificador-dias viernes'>VIERNES</div>
+                <div className='planificador-dias sabado'>SABADO</div>
+                <div className='planificador-dias domingo'>DOMINGO</div>
+
+
+                <PlatosPlanificador />
 
             </div>
-        )
-    }
+            
+                <CleanPlanner/>
+            
+        </>
+        
+    )
+
 }
 
 export default Calendario

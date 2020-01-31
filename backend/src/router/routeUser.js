@@ -3,7 +3,15 @@ const passport = require('passport')
 
 const postUser = async(req,res) =>{
     const {nombre,email,password,confirm_password} = req.body
+    lunes={'desayuno':'','almuerzo':'','cena':''}
+    martes={'desayuno':'','almuerzo':'','cena':''}
+    miercoles={'desayuno':'','almuerzo':'','cena':''}
+    jueves={'desayuno':'','almuerzo':'','cena':''}
+    viernes={'desayuno':'','almuerzo':'','cena':''}
+    sabado={'desayuno':'','almuerzo':'','cena':''}
+    domingo={'desayuno':'','almuerzo':'','cena':''}
     let errors = []
+    console.log(lunes)
 
     if(nombre.length<=0){
         errors.push({text:'POR FAVOR AGREGUE SU NOMBRE'})
@@ -30,7 +38,7 @@ const postUser = async(req,res) =>{
             req.flash('error_msg','El correo ya está en uso')
             res.json("EL EMAIL YA ESTÁ EN NUESTRA BASE DE DATOS")
         } else{
-            const newUser = new User({nombre,email,password})
+            const newUser = new User({nombre,email,password,lunes,martes,miercoles,jueves,viernes,sabado,domingo})
             newUser.password = await newUser.encryptPassword(password)
             await newUser.save()
             req.flash('success_msg', 'Estas Registrado')

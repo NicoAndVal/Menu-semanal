@@ -15,17 +15,18 @@ class AgregarMenu extends React.Component {
             method: 'POST',
             body: new FormData(e.target)
         })
+        .then(res =>res.json())
+        .then(res => alert(res))
         
         e.preventDefault()
-        // e.target.nombre.value =''
-        // e.target.instancia.value=''
-        // e.target.elaboracion.value=''
-        // e.target.porciones.value = ''
-        // e.target.imagen.value = ''
-        // e.target.time.value = ''
+
+        e.target.nombre.value =''
+        e.target.instancia.value=''
+        e.target.elaboracion.value=''
+        e.target.porciones.value = ''
+        e.target.imagen.value = ''
+        e.target.time.value = ''
     }
-
-
 
     render() {
         return (
@@ -37,7 +38,6 @@ class AgregarMenu extends React.Component {
                     <div className="form-group">
                         <label htmlFor="exampleInputEmail1">Nombre del Menú</label>
                         <input type="text" className="form-control"  name='nombre'/>
-                        {/* <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small> */}
                     </div>
                     <div className="form-group">
                         <label>Elaboración del plato</label>
@@ -58,7 +58,7 @@ class AgregarMenu extends React.Component {
                             </div>
                             <div className="col">
                                 <div className="form-group">
-                                    <label >Tiempo de elaboración</label>
+                                    <label >Tiempo</label>
                                     <select className="form-control" name='time'>
                                         <option value='15 minutos'>15 Minutos</option>
                                         <option value='30 minutos'>30 Minutos</option>

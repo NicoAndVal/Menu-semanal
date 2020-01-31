@@ -67,3 +67,73 @@
         display: none;
     }
 }
+
+//CALENDARIO ESCRITORIO
+
+.planificador{
+    display: grid;
+    grid-template-rows: 50px repeat(7,auto);
+    grid-template-columns: 200px repeat(3, 1fr);
+    border: 1px solid black;
+    font-size: 2rem;
+
+    &-instancias{
+        display: flex;
+        border: 1px solid black;
+        justify-content: center;
+    }
+
+    &-dias{
+        border: 1px solid black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+
+                
+    }
+
+    .lunes{
+        grid-row: 2/3;
+    }
+    .martes{
+        grid-row: 3/4;
+    }
+    .miercoles{
+        grid-row: 4/5;
+    }
+    .jueves{
+        grid-row: 5/6;
+    }
+    .viernes{
+        grid-row: 6/7;
+    }
+    .sabado{
+        grid-row: 7/8;
+    }
+    .domingo{
+        grid-row: 8/9;
+    }
+
+    &-comidas{
+        display: grid;
+        grid-template-rows: auto;
+        grid-template-columns: repeat(3,1fr);
+        grid-column: span 3;
+
+        &_contenedor{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid black;
+            flex-direction: column;
+            padding: 10px;
+
+        }
+
+        &_imagenes{
+            width: 100%;
+            height: 100%;
+        }
+    }
+}

@@ -5,23 +5,34 @@ import { useContext } from 'react'
 
 
 const Menues = () => {
-    const { menues } = useContext(MenuContext)
+    let [menuesContext] = useContext(MenuContext)
+    let menues = ''
+    let desayunos ='',
+        almuerzos ='',
+        cenas =''
 
-    const desayunos = menues.filter(d => d.instancia ==='Desayuno')
-    const almuerzos = menues.filter(d => d.instancia ==='Almuerzo')
-    const cenas = menues.filter(d => d.instancia ==='Cena')
+    if(menuesContext){
+         menues = menuesContext.statePlate.data
+         desayunos = menues.filter(d => d.instancia ==='Desayuno')
+         almuerzos = menues.filter(d => d.instancia ==='Almuerzo')
+         cenas = menues.filter(d => d.instancia ==='Cena')
+    }
+    
+    console.log(menues)
+    
     
     return(
         <>
-        <h1>DESAYUNOS</h1>
+        <h1 className='title-menues'>DESAYUNOS</h1>
         <GridMenues menues = {desayunos}  />
-        <h1>ALMUERZOS</h1>
+        <h1  className='title-menues' >ALMUERZOS</h1>
         <GridMenues menues = {almuerzos}  />
-        <h1>CENAS</h1>
+        <h1  className='title-menues'>CENAS</h1>
         <GridMenues menues = {cenas}  />
 
 
         </>
+        
     )
 }
 

@@ -1,5 +1,7 @@
 import React from 'react'
-  
+import { Link } from 'react-router-dom'
+import logo from '../../logo.png'
+
 
 const login = (e) =>{
     e.preventDefault()
@@ -22,7 +24,7 @@ const Login = () => {
   return (
     <div className='text-center contenedor-login'>
       <form className="form-signin formulario-login" onSubmit={login}>
-        <img className="mb-4" src="https://getbootstrap.com/docs/4.4/assets/brand/bootstrap-solid.svg" alt="logo" width="72" height="72" />
+        <img className="mb-4" src={logo} alt="logo" width="72" height="72" />
 
         <h1 className="h3 mb-4 font-weight-normal">INGRESAR</h1>
         
@@ -32,16 +34,10 @@ const Login = () => {
         
         <label htmlFor="inputPassword" className="sr-only">CONTRASEÑA</label>
         <input type="password" id="inputPassword" name='password' className="form-control mb-3" placeholder="Password" required/>
-        
-        
-          
-        <div className="checkbox mb-3">
-          <label>
-            <input type="checkbox" value="remember-me" /> Recuerdame
-          </label>
-        </div>
+
         <button className="btn btn-lg btn-success btn-block" type="submit">Ingresar</button>
-        <p className="mt-5 mb-3 text-muted">&copy; 2017-2019</p>
+        <p className="mt-5 mb-3 text-muted">¿No tienes cuentas? <Link to='/registro'>Registrate</Link></p>
+        <p className="text-muted">&copy; 2017-2019</p>
       </form>
     </div>
     )

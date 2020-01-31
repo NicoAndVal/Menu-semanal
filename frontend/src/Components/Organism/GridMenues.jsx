@@ -15,7 +15,6 @@ const GridMenus = ({ menues }) => {
                             <CartMenues
                                 id={menu._id}
                                 nombre={menu.nombre}
-                                elaboracion={menu.elaboracion}
                                 time={menu.time}
                                 porciones={menu.porciones}
                                 instancia={menu.instancia}

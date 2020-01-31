@@ -46,6 +46,7 @@ const postPlato = (req,res) =>{
                 })
 
                 await newPlato.save()
+                res.json('PLATO GUARDADO CORRECTAMENTE')
             }
         }
     }
@@ -67,7 +68,8 @@ const getPlato = async (req,res) =>{
 }
 
 const deletePlato = async(req,res) =>{
-    await Plato.findByIdAndDelete({_id:req.params.id}, (err,data) => apiResponse(req,res,err,data))
+    await Plato.findByIdAndDelete({_id:req.params.id})
+    .exec((err,data) => apiResponse(req,res,err,data))
 }
 
 
